@@ -50,6 +50,8 @@ async function login() {
 }
 
 
+
+
 async function getTodos() {
     try {
         const response = await axios.get("/api/todo", {
@@ -62,10 +64,14 @@ async function getTodos() {
 
         response.data.todos.forEach(todo=>{
             const div = document.createElement("div");
-            div.classList.add("bg-gray-100", "p-4", "rounded-lg", "w-64", "shadow-md");
-            div.innerHTML = `<h3 class="text-xl font-bold mb-2">${todo.title}</h3>
+            div.classList.add("bg-white/60", "flex", "justify-between", "p-4", "rounded-lg", "w-64","h-64", "shadow-md");
+            div.innerHTML = `<div>
+           <h3 class="text-xl font-bold mb-2">${todo.title}</h3>
             <p class="text-sm">${todo.description}</p>
-            <button onclick="deleteTodo('${todo._id}')">Delete</button>
+             </div>
+            <button class="bg-black/100 text-white h-12 px-2 py-1 rounded-md hover:bg-black/60" onclick="deleteTodo('${todo._id}')">
+            Delete
+            </button>
             `;
             document.getElementById("todo-list").appendChild(div);
         });
@@ -128,8 +134,6 @@ async function createTodo() {
 }
 
 
-
-
 async function deleteTodo(id) {
     try {
         const response = await axios.delete(`/api/todo/${id}`, {
@@ -146,3 +150,6 @@ async function deleteTodo(id) {
         console.error("Error during deleteTodo: ", error);
     }
 }
+
+
+

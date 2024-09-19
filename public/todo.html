@@ -43,6 +43,25 @@
   </div>
 
 
+  <div id="editModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white p-6 rounded-lg w-96">
+      <h2 class="text-xl font-bold mb-4">Edit Todo</h2>
+
+      <input type="text" id="editTitle" class="border p-2 w-full mb-4" placeholder="Todo title">
+      <textarea id="editDescription" class="border resize-none p-2 w-full mb-4" placeholder="Todo description"></textarea>
+
+      <div class="flex justify-end gap-2">
+        <button id="editCancelBtn" class="bg-white border border-white/50 text-black px-4 py-2 rounded-md hover:bg-white-500">
+          Cancel
+        </button>
+        <button id="editSaveBtn" class="bg-black text-white px-4 py-2 rounded-md hover:bg-blue-600">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+
+
 </body>
 
 <script src="script.js"></script>

@@ -238,6 +238,4 @@ app.delete("/api/todo/:id", auth, async (req, res) => {
 });
 
 
-
-
 app.listen(3000)
