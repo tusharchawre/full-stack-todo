@@ -1,3 +1,5 @@
+
+
 async function signUp() {
     const username = document.getElementById("name").value
     const email = document.getElementById("email").value
@@ -62,7 +64,9 @@ async function getTodos() {
             const div = document.createElement("div");
             div.classList.add("bg-gray-100", "p-4", "rounded-lg", "w-64", "shadow-md");
             div.innerHTML = `<h3 class="text-xl font-bold mb-2">${todo.title}</h3>
-            <p class="text-sm">${todo.description}</p>`;
+            <p class="text-sm">${todo.description}</p>
+            <button onclick="deleteTodo('${todo._id}')">Delete</button>
+            `;
             document.getElementById("todo-list").appendChild(div);
         });
     } catch (error) {
@@ -120,5 +124,25 @@ async function createTodo() {
         }
     } catch (error) {
         console.error("Error during createTodo: ", error);
+    }
+}
+
+
+
+
+async function deleteTodo(id) {
+    try {
+        const response = await axios.delete(`/api/todo/${id}`, {
+            headers: {
+                token: localStorage.getItem("TodoToken")
+            }
+        });
+
+        if (response.status === 200) {
+
+            getTodos();
+        }
+    } catch (error) {
+        console.error("Error during deleteTodo: ", error);
     }
 }

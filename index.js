@@ -210,6 +210,33 @@ app.get("/api/todo/:id" , auth , async (req, res)=>{
     
 })
 
+app.delete("/api/todo/:id", auth, async (req, res) => {
+    const user = await UserModel.findOne({
+        username: req.username
+    });
+
+    if (!user) {
+        return res.status(404).json({
+            message: "User not found"
+        });
+    }
+
+    const result = await TodoModel.deleteOne({
+        userId: user._id,
+        _id: req.params.id
+    });
+
+    if (result.deletedCount > 0) {
+        res.json({
+            message: "Todo deleted successfully"
+        });
+    } else {
+        res.status(404).json({
+            message: "Todo not found"
+        });
+    }
+});
+
 
 
 
