@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js" integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body class="bg-white text-black min-h-screen">
+
+
+  <header class="flex justify-end p-4">
+    <button id="createBtn" class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-700">
+      Create
+    </button>
+  </header>
+
+
+  <section id="todo-list" class="p-4 flex flex-wrap gap-4 justify-start">
+   
+  </section>
+
+
+
+  <div id="todoModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white p-6 rounded-lg w-96">
+      <h2 class="text-xl font-bold mb-4">Create Todo</h2>
+
+      <input type="text" id="title" class="border p-2 w-full mb-4" placeholder="Todo title">
+      <textarea id="description" class="border p-2 w-full mb-4" placeholder="Todo description"></textarea>
+
+      <div class="flex justify-end gap-2">
+        <button id="cancelBtn" class="bg-gray-400 text-white px-4 py-2 rounded-md hover:bg-gray-500">
+          Cancel
+        </button>
+        <button id="saveBtn" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+<script src="script.js"></script>
+</html>

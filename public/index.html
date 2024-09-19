@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Millionth Todo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script> 
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.13/dist/lenis.css">
+</head>
+<body>
+    <div class="w-full sticky top-0 h-screen">
+    <div class=" w-full h-20 bg-white flex justify-between items-center px-10">
+        <div>
+            <img class="size-24" src="./images/todo.png">
+        </div>
+        <div class="flex gap-8">
+            <button class="bg-black rounded-md px-4 py-2 text-white">
+                Login
+            </button>
+            <button class="bg-white border rounded-md px-4 py-2">
+                Sign up
+            </button>
+        </div>
+    </div>
+
+    <div class="stack h-screen flex justify-center flex-col items-center relative">
+
+
+        <img class="card1 absolute top-20  -translate-x-36 -rotate-[25deg] rounded-xl size-96" src="./images/card1.jpeg" alt="">
+        <img class="card2 absolute top-20  -translate-y-16 rounded-xl size-96" src="./images/card3.jpeg" alt="">
+        <img class="card3 absolute top-20  translate-x-36 rotate-[25deg] rounded-xl size-96" src="./images/card2.jpeg" alt="">
+
+        <div class="relative translate-y-48 flex flex-col items-center gap-4">
+            <div class="text-center">
+                <p class="text-4xl">
+                    Millionth Todo
+                </p>
+                <p class="text-md">
+                    A todo app that helps you to manage your tasks
+                </p>
+
+            </div>
+            
+            <button class="bg-black w-32 rounded-md px-4 py-2 text-white">
+                Get Started
+            </button>
+        </div>
+    </div>
+</div>
+
+    <div class="w-full h-[100vh] overflow-hidden relative z-99 bg-black">
+        <div class="p-10">
+            <div class="text-white w-[30vw] flex flex-col gap-4 ">
+                <p class="text-5xl">
+                    The Simplest and Boring Todo App that you will never use.
+                </p>
+                <p class="text-white/80 line-clamp-0">
+                    The purpose of this app is nothing. I does nothing except noting useless stuff you want to write.
+            </p>
+
+        </div>
+    </div>
+
+    <div class="w-full h-[100vh] relative left-[30vw] bg-black border border-white/50">
+
+    </div>
+
+    
+</div>
+
+<div class="h-64 w-full relative z-99 bg-white">
+    <div class="flex">
+        <div class="p-8 h-64 flex flex-col justify-between">
+            <div>
+            <p class="text-md pb-2">
+                About Us
+            </p>
+            <div class="flex gap-2">
+                <a href="https://github.com/tusharchawre">
+                    <div class="bg-black/20 rounded-md p-1">
+                        <i data-lucide="github" class=" text-white "></i>
+                    </div>
+                   </a>
+
+                   <a href="https://www.instagram.com/tushar_chawre/">
+                    <div class="bg-black/20 rounded-md p-1">
+                        <i data-lucide="instagram" class=" text-white "></i>
+                    </div>  
+                   </a>
+
+                   <a href="https://x.com/TusharCtwt">
+                    <div class="bg-black/20 rounded-md p-1">
+                        <i data-lucide="twitter" class=" text-white "></i>
+                    </div>  
+                   </a>
+                
+            </div>
+        </div>
+
+        <div>
+            <p class="text-sm text-black/30">Copyright © 2023 Tushar Chawre</p>
+        </div>
+          
+        </div>
+
+        <div class="h-64 w-full flex items-center justify-center">
+            <p>A useless footer section with links that does nothing</p>
+        </div>
+
+        <a href="">
+            <div class="h-64 w-64 -translate-y-12 flex items-end justify-center underline">
+                <p>Explore more...</p>
+            </div>
+        </a>
+       
+
+    </div>
+
+
+
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+            lucide.createIcons();
+
+const lenis = new Lenis()
+lenis.on('scroll', (e) => {
+  console.log(e)
+})
+function raf(time) {
+  lenis.raf(time)
+  requestAnimationFrame(raf)
+}
+requestAnimationFrame(raf)
+
+const tl = gsap.timeline()
+
+tl.from(".stack", {
+    y: 10,
+    opacity: 0,
+    duration: 2
+})
+
+tl.from(".card1",{
+    rotate: 0,
+    x: 0,
+    duration: 0.7,
+    ease: "power2.out",
+
+} , "-=1")
+tl.from(".card2",{
+    rotate: 0,
+    x: 0,
+    y: 0,
+    duration: 0.7,
+    ease: "power2.out",
+
+}, "-=1")
+tl.from(".card3",{
+    rotate: 0,
+    x: 0,
+    duration: 0.7,
+    ease: "power2.out",
+
+}, "-=1")
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
