@@ -13,19 +13,19 @@ app.use(express.json())
 
 
 app.get("/", (req, res)=>{
-    res.sendFile(__dirname + "/public/index.html")
+    res.sendFile("/public/index.html")
 })
 
 app.get("/signup", (req, res)=>{
-    res.sendFile(__dirname + "/public/signup.html")
+    res.sendFile("/public/signup.html")
 })
 
 app.get("/login", (req, res)=>{
-    res.sendFile(__dirname + "/public/login.html")
+    res.sendFile("/public/login.html")
 })
 
 app.get("/todo", (req, res)=>{
-    res.sendFile(__dirname + "/public/todo.html")
+    res.sendFile("/public/todo.html")
 })
 
 
