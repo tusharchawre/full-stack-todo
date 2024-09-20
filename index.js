@@ -219,6 +219,39 @@ app.get("/api/todo/:id" , auth , async (req, res)=>{
     
 })
 
+
+app.post("/api/todo/:id" , auth , async (req, res)=>{
+
+    const {title , description } = req.body
+
+    const user = await UserModel.findOne({
+        username : req.username
+    })
+
+    const todo = await TodoModel.find({
+        userId: user._id,
+        _id: req.params.id
+    })
+
+    if(todo){
+       await TodoModel.updateOne({
+        title: title,
+        description: description
+       })
+
+       res.json({
+        message: "Update done"
+       })
+    }
+    else{   
+        res.status(404).json({
+            message: "Not Found"
+        })
+    }
+
+    
+})
+
 app.delete("/api/todo/:id", auth, async (req, res) => {
     const user = await UserModel.findOne({
         username: req.username

@@ -84,6 +84,9 @@ async function getTodos() {
             <button class="bg-black/100  text-white h-12 px-2 py-1 rounded-md hover:bg-black/60" onclick="deleteTodo('${todo._id}')">
             Delete
             </button>
+            <button class="bg-black/100  text-white h-12 px-2 py-1 rounded-md hover:bg-black/60" onclick="editTodo('${todo._id}')">
+            Edit
+            </button>
             </div>
             `;
             
@@ -191,4 +194,58 @@ function logOut() {
     localStorage.removeItem("TodoToken")
     window.location.href = "/login"
 
+}
+
+
+async function editTodo(id) {
+    const editModal = document.getElementById("editModal")
+    const editTitle = document.getElementById("editTitle")
+    const editDescription = document.getElementById("editDescription")
+    const editSaveBtn = document.getElementById('editSaveBtn');
+    const editCancelBtn = document.getElementById('editCancelBtn');
+
+    editCancelBtn.addEventListener('click', () => {
+        editModal.classList.add('hidden');
+    });
+
+
+
+    editModal.classList.remove('hidden');
+
+    const response = await axios.get(`/api/todo/${id}`, {
+        headers: {
+            token: localStorage.getItem("TodoToken")
+        }
+    });
+
+    editTitle.value = response.data.todo[0].title
+    editDescription.value = response.data.todo[0].description
+
+
+
+    editSaveBtn.addEventListener('click', async () => {
+        let title = document.getElementById("editTitle").value;
+        let description = document.getElementById("editDescription").value;
+
+        const response2 = await axios.post(`/api/todo/${id}`, {
+            title: title,
+            description : description,
+            status: false
+        }, {
+            headers: {
+                token: localStorage.getItem("TodoToken")
+            }
+        })    
+        if (response2.status === 200) {
+            getTodos();
+            editTitle.value = "";    
+            editDescription.value = "";
+            editModal.classList.add('hidden');
+            
+        }
+
+    });
+
+
+   
 }
