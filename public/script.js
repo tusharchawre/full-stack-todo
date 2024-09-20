@@ -1,5 +1,3 @@
-
-
 async function signUp() {
     const username = document.getElementById("name").value
     const email = document.getElementById("email").value
@@ -16,7 +14,6 @@ async function signUp() {
         window.location.href = '/login'
     }
 }
-
 
 async function login() {
     const username = document.getElementById("name").value;
