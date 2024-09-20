@@ -234,14 +234,17 @@ app.post("/api/todo/:id" , auth , async (req, res)=>{
     })
 
     if(todo){
-       await TodoModel.updateOne({
+      const updateDone = await TodoModel.updateOne({
         title: title,
         description: description
        })
 
-       res.json({
-        message: "Update done"
-       })
+       if(updateDone.acknowledged == true){
+        res.json({
+            message: "Update done"
+           })
+       }
+       
     }
     else{   
         res.status(404).json({
