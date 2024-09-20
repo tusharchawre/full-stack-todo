@@ -58,7 +58,9 @@ function auth(req, res, next) {
         res.status(403).json({
             message: "Authorization token missing"
         });
+
     }
+
 }
 
 
@@ -172,6 +174,7 @@ app.post("/api/todo", auth , async (req, res)=>{
 })
 
 app.get("/api/todo",auth, async (req, res)=>{
+    try{
     const user = await UserModel.findOne({
         username : req.username
     })
@@ -180,10 +183,16 @@ app.get("/api/todo",auth, async (req, res)=>{
         userId: user._id
     })
 
-    res.json({
-        todos
-    })
-
+    if(todos){
+        res.json({
+            todos
+        })
+    }
+  
+}
+catch (e){
+    console.log(e)
+}
 })
 
 app.get("/api/todo/:id" , auth , async (req, res)=>{

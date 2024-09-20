@@ -54,53 +54,49 @@ async function login() {
 
 async function getTodos() {
     try {
+        const token = localStorage.getItem("TodoToken");
+        if (!token) {
+            console.error("No token found in localStorage");
+            showAuthBanner();
+            return;
+        }
+
         const response = await axios.get("/api/todo", {
             headers: {
-                token: localStorage.getItem("TodoToken")
+                token: token
             }
         });
+
+        // Hide auth banner if authenticated
+        hideAuthBanner();
+
 
         document.getElementById("todo-list").innerHTML = "";
 
         response.data.todos.forEach(todo=>{
             const div = document.createElement("div");
-            div.classList.add("bg-white/60", "flex", "justify-between", "p-4", "rounded-lg", "w-64","h-64", "shadow-md");
+            div.classList.add("bg-white/60", "flex" , "justify-between" , "p-4", "rounded-lg", "w-64","h-64", "shadow-md", "relative");
             div.innerHTML = `<div>
            <h3 class="text-xl font-bold mb-2">${todo.title}</h3>
             <p class="text-sm">${todo.description}</p>
              </div>
-            <button class="bg-black/100 text-white h-12 px-2 py-1 rounded-md hover:bg-black/60" onclick="deleteTodo('${todo._id}')">
+             <div id="todoBtns" class="absolute bottom-2 right-2">
+            <button class="bg-black/100  text-white h-12 px-2 py-1 rounded-md hover:bg-black/60" onclick="deleteTodo('${todo._id}')">
             Delete
             </button>
+            </div>
             `;
-            const button = document.createElement("button")
-            button.id = "editBtn"
-            button.innerHTML = "Edit"
-            button.classList.add("bg-black/100", "text-white" ,"h-12", "px-2", "py-1", "rounded-md","hover:bg-black/60");
-            div.appendChild(button)
+            
             document.getElementById("todo-list").appendChild(div);
-
-            const editBtn = document.getElementById('editBtn');
-            const editModal = document.getElementById('editModal');
-            const editCancelBtn = document.getElementById('editCancelBtn');
-            const editSaveBtn = document.getElementById('editSaveBtn');
-
-            editBtn.addEventListener('click', () => {
-                editModal.classList.remove('hidden');
-            });
-            
-            
-            editCancelBtn.addEventListener('click', () => {
-                editModal.classList.add('hidden');
-            });
-            
-            
-            editSaveBtn.addEventListener('click', async () => {
-                editModal.classList.add('hidden');
-            });
         });
     } catch (error) {
-        console.error("Error during getTodos: ", error);
+        console.log(error.response.data)
+        const div = document.createElement("div");
+            div.innerHTML = ` <div id="authBanner" class="bg-red-500 text-white p-4 mb-4 hidden text-center">
+    You need to be authenticated to access this page!
+  </div>
+            `;
+            document.getElementById("todo-list").appendChild(div);
     }
 }   
 
@@ -109,7 +105,15 @@ getTodos();
 }
 
 
+function showAuthBanner() {
+    const banner = document.getElementById("authBanner");
+    banner.classList.remove("hidden");
+}
 
+function hideAuthBanner() {
+    const banner = document.getElementById("authBanner");
+    banner.classList.add("hidden");
+}
 
 
 
@@ -183,3 +187,8 @@ async function deleteTodo(id) {
 
 
 
+function logOut() {
+    localStorage.removeItem("TodoToken")
+    window.location.href = "/login"
+
+}

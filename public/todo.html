@@ -11,7 +11,11 @@
 <body class="bg-white text-black min-h-screen">
 
 
-  <header class="flex justify-end p-4">
+  <header class="flex justify-end p-4 gap-4">
+    <button onclick="logOut()"  class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-700">
+      Log out
+    </button>
+
     <button id="createBtn" class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-700">
       Create
     </button>
@@ -63,6 +67,16 @@
   </div>
 
 
+
+  <div id="authBanner" class="flex flex-col gap-4 bg-red-500 text-white p-4 mb-4 hidden text-center items-center">
+    You need to be authenticated to access this page!
+<a href="/login">
+  <button  class="bg-white w-32 text-black px-4 py-2 rounded-md">
+    Sign In
+  </button>
+</a>
+    
+  </div>
 
  
 
