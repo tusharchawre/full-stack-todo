@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "build": "netlify deploy --prod"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -17,6 +17,9 @@
     "lucide-react": "^0.441.0",
     "mongoose": "^8.6.3",
     "sonner": "^1.5.0",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "netlify-cli": "^17.17.1",
+    "netlify-lambda": "^2.0.16",
+    "serverless-http": "^3.2.0"
   }
 }
