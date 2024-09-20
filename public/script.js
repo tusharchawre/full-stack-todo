@@ -73,7 +73,31 @@ async function getTodos() {
             Delete
             </button>
             `;
+            const button = document.createElement("button")
+            button.id = "editBtn"
+            button.innerHTML = "Edit"
+            button.classList.add("bg-black/100", "text-white" ,"h-12", "px-2", "py-1", "rounded-md","hover:bg-black/60");
+            div.appendChild(button)
             document.getElementById("todo-list").appendChild(div);
+
+            const editBtn = document.getElementById('editBtn');
+            const editModal = document.getElementById('editModal');
+            const editCancelBtn = document.getElementById('editCancelBtn');
+            const editSaveBtn = document.getElementById('editSaveBtn');
+
+            editBtn.addEventListener('click', () => {
+                editModal.classList.remove('hidden');
+            });
+            
+            
+            editCancelBtn.addEventListener('click', () => {
+                editModal.classList.add('hidden');
+            });
+            
+            
+            editSaveBtn.addEventListener('click', async () => {
+                editModal.classList.add('hidden');
+            });
         });
     } catch (error) {
         console.error("Error during getTodos: ", error);
@@ -83,6 +107,12 @@ async function getTodos() {
 if(window.location.pathname === "/todo"){
 getTodos();
 }
+
+
+
+
+
+
 
 
 const createBtn = document.getElementById('createBtn');

@@ -13,19 +13,19 @@ app.use(express.json())
 
 
 app.get("/", (req, res)=>{
-    res.sendFile("/public/index.html")
+    res.sendFile(__dirname + "/public/index.html")
 })
 
 app.get("/signup", (req, res)=>{
-    res.sendFile("/public/signup.html")
+    res.sendFile(__dirname + "/public/signup.html")
 })
 
 app.get("/login", (req, res)=>{
-    res.sendFile("/public/login.html")
+    res.sendFile(__dirname + "/public/login.html")
 })
 
 app.get("/todo", (req, res)=>{
-    res.sendFile("/public/todo.html")
+    res.sendFile(__dirname + "/public/todo.html")
 })
 
 
@@ -237,6 +237,5 @@ app.delete("/api/todo/:id", auth, async (req, res) => {
     }
 });
 
-app.use('/.netlify/functions/api', app);
 
 app.listen(3000)
