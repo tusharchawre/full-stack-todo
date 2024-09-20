@@ -237,5 +237,6 @@ app.delete("/api/todo/:id", auth, async (req, res) => {
     }
 });
 
+app.use('/.netlify/functions/api', app);
 
 app.listen(3000)
